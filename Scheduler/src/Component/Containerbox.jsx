@@ -6,7 +6,6 @@ export default function Containerbox() {
   return (
     <Maindiv>
      <div className='tabs'></div>
-     
      <div className='filter'> 
      
      <input type="text" placeholder='Serach'/>
@@ -83,7 +82,7 @@ margin-left:24px;
             margin-top: 20px;
 }
 th, td {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 3px solid #ddd;
             padding: 8px;
             text-align: left;
         }
