@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CgAdd } from "react-icons/cg";
+import Table from '../Table';
 
 export default function Containerbox() {
   return (
@@ -13,32 +14,7 @@ export default function Containerbox() {
      <button className='add'> <CgAdd style={{"height":"24px","width":"18px"}}/> Add</button>
      
       </div>
-
-      <div className='Email-Container m-3'>
-      <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Subject</th>
-                <th>Schedule</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            <tr>
-                <td>Sample Title 1</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, repellendus ipsa minima eius quos suscipit laborum maxime ullam, quam nulla quaerat tenetur dolores iusto molestias autem quisquam aperiam vel blanditiis.</td>
-                <td>Sample Subject 1</td>
-                <td>Sample Schedule 1</td>
-                <td>Sample Action 1</td>
-            </tr>
-            
-            
-        </tbody>
-    </table>
-      </div>
+      <Table/>
     </Maindiv>
 
   )
@@ -76,21 +52,4 @@ margin-left:24px;
         padding: 8px;
     }
 }
-.Email-container{
-    width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-}
-th, td {
-            border-bottom: 3px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #D8D2DE;
-        }
-        th:nth-child(2),
-        td:nth-child(2) {
-            width: 30%; 
-        }
 `
