@@ -2,8 +2,11 @@
 import React from 'react'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import styled from 'styled-components'
+
+
 import { MdEdit } from "react-icons/md";
-export default function Tablerow({schedule}) {
+export default function Tablerow({schedule,fetchData}) {
+    
     const renderFrequency=(schedule)=>{
         const {frequency, repeat, time}=schedule;
         if(frequency==="Daily")
@@ -18,6 +21,24 @@ export default function Tablerow({schedule}) {
             return `Monthy  ${repeat} at ${time}`;
         }
     }
+    const DeleteSchedular=async (id)=>{
+        try{
+            const res = await fetch(`http://localhost:3000/schedules/${id}`,
+             {
+                method: 'DELETE',
+              });
+              if(res.ok){
+                alert("Email Schedule Removed");
+                fetchData(`http://localhost:3000/schedules`);
+              }
+              else{
+                alert("unable to  Removed")
+              }
+        }
+        catch(e){console.log("Error in API")}
+    
+
+    }
   return (
     <Tablerowdiv>
     <td>{schedule.title}</td>
@@ -25,7 +46,7 @@ export default function Tablerow({schedule}) {
     <td>{schedule.subject}</td>
     <td>{renderFrequency(schedule)}</td>
     <td><div className='action'><span className='edit'><MdEdit /></span>
-    <span className='delete'><RiDeleteBin6Line /></span></div></td>
+    <span className='delete' onClick={()=>{DeleteSchedular(schedule.id)}}><RiDeleteBin6Line /></span></div></td>
 </Tablerowdiv>
   )
 }

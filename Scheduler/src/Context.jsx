@@ -5,7 +5,8 @@ import React, { createContext, useEffect, useState } from 'react';
 const url="http://localhost:3000/schedules"
 const AppProvider = ({ children }) => {
   const [schedules, setSchedules] = useState([]);
-  const fetchData=async (url)=>{
+
+   const fetchData=async (url)=>{
     const res=await fetch(url);
     const schedulesData= await res.json();
     console.log(schedulesData);
@@ -17,7 +18,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{schedules,setSchedules}}>
+      value={{schedules,setSchedules,fetchData}}>
       {children}
     </AppContext.Provider>
   );

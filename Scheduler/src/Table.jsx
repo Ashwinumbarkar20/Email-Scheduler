@@ -4,7 +4,7 @@ import  {useContext} from 'react'
 import { AppContext } from './Context'
 import Tablerow from './Component/Tablerow';
 export default function Table() {
-   const{schedules}=useContext(AppContext);
+   const{schedules,fetchData}=useContext(AppContext);
    console.log(schedules);
   return (
     <Maindiv>
@@ -21,7 +21,7 @@ export default function Table() {
         </thead>
         <tbody>
             {
-                schedules.map((schedule)=>(<Tablerow key={schedule.id} schedule={schedule}/>))
+                schedules.map((schedule)=>(<Tablerow key={schedule.id} schedule={schedule} fetchData={fetchData}/>))
             }
           
             
