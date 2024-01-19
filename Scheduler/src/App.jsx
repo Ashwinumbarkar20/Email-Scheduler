@@ -4,8 +4,7 @@ import './App.css'
 import styled from 'styled-components'
 
 function App() {
- console.log("Hello")
-
+ 
   return (
     <>
     <Maindiv className='container-fulid d-flex flex-row' >

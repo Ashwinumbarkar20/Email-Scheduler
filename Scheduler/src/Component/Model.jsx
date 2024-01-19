@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
 
 const MonthlyRepeat = ({ value, onChange }) => {
@@ -7,13 +7,12 @@ const MonthlyRepeat = ({ value, onChange }) => {
     <>
       <label>Repeat:</label>
       <select name="repeat" value={value} onChange={onChange}>
-        <option value="firstMonday">First Monday</option>
-        <option value="lastFriday">Last Friday</option>
+        <option value="first Monday">First Monday</option>
+        <option value="last Friday">Last Friday</option>
       </select>
     </>
   );
 };
-
 
 const WeeklyRepeat = ({ value, onChange }) => {
   const weekdays = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
@@ -49,9 +48,8 @@ const WeeklyRepeat = ({ value, onChange }) => {
   );
 };
 
-
-const Model = ({ onClose, onSave,title }) => {
-  const [formData, setFormData] = useState({
+const Model = ({ onClose,title,initialData}) => {
+  const [formData, setFormData] = useState(initialData || {
     title: '',
     description: '',
     subject: '',
@@ -60,6 +58,9 @@ const Model = ({ onClose, onSave,title }) => {
     time: '',
   });
 
+  
+  const [isModelOpen, setIsModelOpen] = useState(true);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -67,27 +68,82 @@ const Model = ({ onClose, onSave,title }) => {
     }));
   };
 
-  const handleSave = () => {
-    onSave(formData);
-    
-    onClose();
-  };
+  const handleSave = async(e) => {
+   
+try{
+  if (initialData) {
+    const response = await fetch(`http://localhost:3000/schedules/${initialData.id}`, {
+          method: 'PATCH',  
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
 
+        if (response.ok) {
+          
+          const updatedSchedule = await response.json();
+          console.log('Schedule updated:', updatedSchedule);
+        } else {
+         
+          console.error('Failed to update schedule');
+        }
+  }
+  else {
+    const response = await fetch('http://localhost:3000/schedules', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    if (response.ok) {
+      // Successful response
+      const createdSchedule = await response.json();
+      console.log('New schedule created:', createdSchedule);
+    }
+    else {
+      // Handle error response
+      console.error('Failed to create schedule');
+    }
+
+  
+  }
+  e.preventDefault();
+   onClose();
+}
+catch(e){
+  console.log("API is not connected")
+}
+    
+  };
+  useEffect(() => {
+    if (!isModelOpen) {
+      setFormData(initialData || {
+        title: '',
+        description: '',
+        subject: '',
+        frequency: 'Daily',
+        repeat: null,
+        time: '',
+      });
+    }
+  }, [isModelOpen, initialData]);
   return (
     <ModelContainer>
     <h5>{title}</h5>
       <Form>
-        <label>Title:</label>
-        <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
+        <label>*Title:</label>
+        <input type="text" required name="title" value={formData.title} onChange={handleInputChange} />
 
-        <label>Description:</label>
-        <textarea name="description" value={formData.description} onChange={handleInputChange} />
+        <label>*Description:</label>
+        <textarea name="description" required value={formData.description} onChange={handleInputChange} />
 
-        <label>Subject:</label>
-        <input type="text" name="subject" value={formData.subject} onChange={handleInputChange} />
+        <label>*Subject:</label>
+        <input type="text" name="subject" required value={formData.subject} onChange={handleInputChange} />
 
-        <label>Frequency:</label>
-        <select name="frequency" value={formData.frequency} onChange={handleInputChange}>
+        <label>*Frequency:</label>
+        <select name="frequency" required value={formData.frequency} onChange={handleInputChange}>
           <option value="Daily">Daily</option>
           <option value="Weekly">Weekly</option>
           <option value="Monthly">Monthly</option>
@@ -97,8 +153,8 @@ const Model = ({ onClose, onSave,title }) => {
 
         {formData.frequency === 'Monthly' && <MonthlyRepeat value={formData.repeat} onChange={handleInputChange} />}
 
-        <label>Time:</label>
-        <input type="time" name="time" value={formData.time} onChange={handleInputChange} />
+        <label>*Time:</label>
+        <input type="time" required name="time" value={formData.time} onChange={handleInputChange} />
 
         <div className="buttons">
           <button onClick={onClose}>Cancel</button>

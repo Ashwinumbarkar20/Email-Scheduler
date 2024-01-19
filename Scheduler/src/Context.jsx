@@ -6,8 +6,10 @@ const url="http://localhost:3000/schedules"
 const AppProvider = ({ children }) => {
   const [schedules, setSchedules] = useState([]);
   const [search,setSearch]=useState("");
+
    const fetchData=async (url)=>{
     const res=await fetch(url);
+
     const schedulesData= await res.json();
     console.log(schedulesData);
     setSchedules(schedulesData);
@@ -18,7 +20,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{schedules,setSchedules,fetchData,search,setSearch}}>
+      value={{schedules,setSchedules,fetchData,search,setSearch,url}}>
       {children}
     </AppContext.Provider>
   );

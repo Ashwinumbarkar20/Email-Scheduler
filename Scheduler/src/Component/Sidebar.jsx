@@ -4,11 +4,12 @@ export default function Sidebar() {
   return (
     <Lefttab className='contaoner-fluid'>
      
-     Hello
+    
     </Lefttab>
   )
 }
 const  Lefttab=styled.div`
+position:sticky;
 margin-top:48px;
 width:72px;
 background-color:#3C1E5A;

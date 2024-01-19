@@ -1,166 +1,61 @@
 {
   "schedules": [
     {
-      "id": "9",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
+      "id": "4b54",
+      "title": "t2",
+      "description": "d2",
+      "subject": "s2",
       "frequency": "Weekly",
       "repeat": [
-        "M",
-        "W"
+        "T",
+        "F"
       ],
-      "time": "Sample Time 1"
+      "time": "01:03"
     },
     {
-      "id": "10",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "11",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "12",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "13",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "14",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "15",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "16",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "17",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "18",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "19",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "20",
-      "title": "Sample Title 1",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 1",
-      "frequency": "Weekly",
-      "repeat": [
-        "M",
-        "W"
-      ],
-      "time": "Sample Time 1"
-    },
-    {
-      "id": "2",
-      "title": "Sample Title 2",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 2",
-      "frequency": "Monthly",
-      "repeat": "firstMonday",
-      "time": "Sample Time 2"
-    },
-    {
-      "id": "3",
-      "title": "Sample Title 3",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
-      "subject": "Sample Subject 3",
+      "id": "92a3",
+      "title": "t3",
+      "description": "d3",
+      "subject": "s3",
       "frequency": "Daily",
       "repeat": null,
-      "time": "Sample Time 3"
+      "time": "01:07"
+    },
+    {
+      "id": "f79d",
+      "title": "t4",
+      "description": "d4",
+      "subject": "s4",
+      "frequency": "Weekly",
+      "repeat": [
+        "Th",
+        "F"
+      ],
+      "time": "23:32"
+    },
+    {
+      "id": "3f2e",
+      "title": "t5",
+      "description": "d5",
+      "subject": "s5",
+      "frequency": "Weekly",
+      "repeat": [
+        "W",
+        "F"
+      ],
+      "time": "12:02"
+    },
+    {
+      "id": "79a2",
+      "title": "t6",
+      "description": "d6",
+      "subject": "s6",
+      "frequency": "Weekly",
+      "repeat": [
+        "T",
+        "W"
+      ],
+      "time": "12:21"
     }
   ]
 }

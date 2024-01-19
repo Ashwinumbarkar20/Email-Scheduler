@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import styled from 'styled-components'
 import { CgAdd } from "react-icons/cg";
 import Table from '../Table';
@@ -6,7 +6,7 @@ import { AppContext } from '../Context';
 import Model from './Model';
 
 export default function Containerbox() {
-    const {search,setSearch}=useContext(AppContext)
+    const {search,setSearch,fetchData,url}=useContext(AppContext)
     const [isModelOpen, setIsModelOpen] = useState(false);
     
     const handleAddClick = () => {
@@ -16,6 +16,12 @@ export default function Containerbox() {
       const handleCloseModel = () => {
         setIsModelOpen(false);
       };
+
+      useEffect(() => {
+        // Call fetchData whenever the search parameter changes
+        fetchData(`${url}?search=${encodeURIComponent(search)}`);
+      }, [search]);
+    
   return (
     <Maindiv>
      <div className='tabs'></div>
@@ -27,11 +33,7 @@ export default function Containerbox() {
      
       </div>
       <Table />
-      {isModelOpen && <Model title={"Add Schedule"} onClose={handleCloseModel} onSave={(data) => {
-        // Handle saving the data to your schedules or making an API call
-        console.log('Data to be saved:', data);
-        handleCloseModel();
-      }} />}
+      {isModelOpen && <Model title={"Add Schedule"} onClose={handleCloseModel}  />}
       
     </Maindiv>
 

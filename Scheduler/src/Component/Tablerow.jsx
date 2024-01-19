@@ -1,11 +1,21 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React,{useState} from 'react'
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Model from './Model';
 import styled from 'styled-components'
 
 
 import { MdEdit } from "react-icons/md";
 export default function Tablerow({schedule,fetchData}) {
+    const[isEditing, setIsEditing] = useState(false);
+
+    const handleEditClick=()=>{
+        setIsEditing(true);
+    }
+
+    const handleModalClose = () => {
+        setIsEditing(false);
+      };
     
     const renderFrequency=(schedule)=>{
         const {frequency, repeat, time}=schedule;
@@ -15,10 +25,10 @@ export default function Tablerow({schedule,fetchData}) {
         }
         else if(frequency==="Weekly")
         {
-            return `Weekly  ${repeat.join(', ')} at ${time}`;
+            return `Weekly  ${repeat && repeat.join(', ')} at ${time}`;
         }
         else if(frequency==="Monthly"){
-            return `Monthy  ${repeat} at ${time}`;
+            return `Monthly  ${repeat || ''} at ${time}`;
         }
     }
     const DeleteSchedular=async (id)=>{
@@ -39,14 +49,26 @@ export default function Tablerow({schedule,fetchData}) {
     
 
     }
+
   return (
     <Tablerowdiv>
     <td>{schedule.title}</td>
     <td>{schedule.description}</td>
     <td>{schedule.subject}</td>
     <td>{renderFrequency(schedule)}</td>
-    <td><div className='action'><span className='edit'><MdEdit /></span>
+    <td><div className='action'><span className='edit' onClick={handleEditClick}><MdEdit /></span>
     <span className='delete' onClick={()=>{DeleteSchedular(schedule.id)}}><RiDeleteBin6Line /></span></div></td>
+    {isEditing && (
+        <Model
+          title='Edit Schedule'
+          onClose={handleModalClose}
+          onSave={(data) => {
+        
+        console.log('Data to be saved:', data)}}
+          initialData={schedule} 
+        />
+      )}
+
 </Tablerowdiv>
   )
 }
