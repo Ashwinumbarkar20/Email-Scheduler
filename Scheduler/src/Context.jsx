@@ -2,7 +2,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 
  const AppContext = createContext();
-const url="http://localhost:3000/schedules"
+const url="https://emaildata1.onrender.com/schedules";
 const AppProvider = ({ children }) => {
   const [schedules, setSchedules] = useState([]);
   const [search,setSearch]=useState("");

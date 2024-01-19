@@ -2,8 +2,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import  {useContext} from 'react'
-import { AppContext } from './Context'
-import Tablerow from './Component/Tablerow';
+import { AppContext } from '../Context'
+import Tablerow from './Tablerow';
 export default function Table() {
 
    const{schedules,fetchData}=useContext(AppContext);

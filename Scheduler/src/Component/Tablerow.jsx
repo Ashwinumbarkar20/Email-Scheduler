@@ -33,13 +33,13 @@ export default function Tablerow({schedule,fetchData}) {
     }
     const DeleteSchedular=async (id)=>{
         try{
-            const res = await fetch(`http://localhost:3000/schedules/${id}`,
+            const res = await fetch(`https://emaildata1.onrender.com/schedules/${id}`,
              {
                 method: 'DELETE',
               });
               if(res.ok){
-                alert("Email Schedule Removed");
-                fetchData(`http://localhost:3000/schedules`);
+                
+                fetchData(`https://emaildata1.onrender.com/schedules`);
               }
               else{
                 alert("unable to  Removed")

@@ -56,6 +56,18 @@
         "W"
       ],
       "time": "12:21"
+    },
+    {
+      "id": "1808",
+      "title": "t7",
+      "description": "12",
+      "subject": "12",
+      "frequency": "Daily",
+      "repeat": [
+        "W",
+        "Th"
+      ],
+      "time": "22:02"
     }
   ]
 }

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { AppContext } from '../Context';
 
 const MonthlyRepeat = ({ value, onChange }) => {
   return (
@@ -49,6 +50,7 @@ const WeeklyRepeat = ({ value, onChange }) => {
 };
 
 const Model = ({ onClose,title,initialData}) => {
+  const {fetchData}=useContext(AppContext);
   const [formData, setFormData] = useState(initialData || {
     title: '',
     description: '',
@@ -69,54 +71,53 @@ const Model = ({ onClose,title,initialData}) => {
   };
 
   const handleSave = async(e) => {
-   
-try{
-  if (initialData) {
-    const response = await fetch(`http://localhost:3000/schedules/${initialData.id}`, {
-          method: 'PATCH',  
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+    console.log("in handle save")
+    e.preventDefault();
+   try{
+  const endpoint = initialData
+  ? `https://emaildata1.onrender.com/schedules/${initialData.id}`
+  : 'https://emaildata1.onrender.com/schedules';
 
-        if (response.ok) {
-          
-          const updatedSchedule = await response.json();
-          console.log('Schedule updated:', updatedSchedule);
-        } else {
-         
-          console.error('Failed to update schedule');
-        }
-  }
-  else {
-    const response = await fetch('http://localhost:3000/schedules', {
-      method: 'POST',
+     
+    const response = await fetch(endpoint, {
+      method:initialData ? 'PATCH' : 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
+      mode: 'cors',
     });
-    if (response.ok) {
-      // Successful response
-      const createdSchedule = await response.json();
-      console.log('New schedule created:', createdSchedule);
-    }
-    else {
-      // Handle error response
-      console.error('Failed to create schedule');
-    }
-
-  
+    const result = await response.json();
+    if (response.status==200) {
+      
+      if (initialData) {
+       
+        console.log('Schedule updated:', result);
+        
+      } 
+      
+      onClose(); 
+      alert("Schedule Updated");
+      fetchData("https://emaildata1.onrender.com/schedules");
+    } 
+  else if(response.status==201){
+    console.log('Schedule Created:', result);
+    
+    onClose();
+    alert("Schedule Created");
+    fetchData("https://emaildata1.onrender.com/schedules");
   }
-  e.preventDefault();
-   onClose();
+  
+  onClose();
+   
 }
 catch(e){
-  console.log("API is not connected")
+  console.log(e)
 }
     
   };
+
   useEffect(() => {
     if (!isModelOpen) {
       setFormData(initialData || {
@@ -129,10 +130,11 @@ catch(e){
       });
     }
   }, [isModelOpen, initialData]);
+
   return (
     <ModelContainer>
     <h5>{title}</h5>
-      <Form>
+      <Form action='https://emaildata1.onrender.com/schedules' method="POST" onSubmit={(e)=>handleSave(e)}>
         <label>*Title:</label>
         <input type="text" required name="title" value={formData.title} onChange={handleInputChange} />
 
@@ -158,7 +160,7 @@ catch(e){
 
         <div className="buttons">
           <button onClick={onClose}>Cancel</button>
-          <button onClick={handleSave}>Done</button>
+          <button type="submit">Done</button>
         </div>
       </Form>
     </ModelContainer>

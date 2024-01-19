@@ -1,7 +1,7 @@
 import React, { useContext, useState,useEffect } from 'react'
 import styled from 'styled-components'
 import { CgAdd } from "react-icons/cg";
-import Table from '../Table';
+import Table from './Table';
 import { AppContext } from '../Context';
 import Model from './Model';
 
@@ -17,10 +17,7 @@ export default function Containerbox() {
         setIsModelOpen(false);
       };
 
-      useEffect(() => {
-        // Call fetchData whenever the search parameter changes
-        fetchData(`${url}?search=${encodeURIComponent(search)}`);
-      }, [search]);
+     
     
   return (
     <Maindiv>
