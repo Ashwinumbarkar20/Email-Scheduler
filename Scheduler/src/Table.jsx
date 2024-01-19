@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import styled from 'styled-components'
 import  {useContext} from 'react'
 import { AppContext } from './Context'
 import Tablerow from './Component/Tablerow';
 export default function Table() {
+
    const{schedules,fetchData}=useContext(AppContext);
+
    console.log(schedules);
   return (
     <Maindiv>
@@ -60,3 +63,5 @@ font-weight: 400;
 line-height: normal;
         }
 `
+ 
+ 

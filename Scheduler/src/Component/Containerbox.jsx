@@ -1,20 +1,38 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { CgAdd } from "react-icons/cg";
 import Table from '../Table';
+import { AppContext } from '../Context';
+import Model from './Model';
 
 export default function Containerbox() {
+    const {search,setSearch}=useContext(AppContext)
+    const [isModelOpen, setIsModelOpen] = useState(false);
+    
+    const handleAddClick = () => {
+        setIsModelOpen(true);
+      };
+    
+      const handleCloseModel = () => {
+        setIsModelOpen(false);
+      };
   return (
     <Maindiv>
      <div className='tabs'></div>
      <div className='filter'> 
      
-     <input type="text" placeholder='Serach'/>
+     <input type="text" placeholder='Serach' onChange={(e)=>{setSearch(e.target.value)}} value={search}/>
      
-     <button className='add'> <CgAdd style={{"height":"24px","width":"18px"}}/> Add</button>
+     <button className='add' onClick={handleAddClick}> <CgAdd style={{"height":"24px","width":"18px"}}/> Add</button>
      
       </div>
-      <Table/>
+      <Table />
+      {isModelOpen && <Model title={"Add Schedule"} onClose={handleCloseModel} onSave={(data) => {
+        // Handle saving the data to your schedules or making an API call
+        console.log('Data to be saved:', data);
+        handleCloseModel();
+      }} />}
+      
     </Maindiv>
 
   )
@@ -36,6 +54,8 @@ margin-left:24px;
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
     input{
         height:38px;
         width:300px;
